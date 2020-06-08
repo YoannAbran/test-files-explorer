@@ -10,17 +10,20 @@ function ScanDirectory($pDir, $pData) {
 
     if ($dir = opendir($pDir)) {
         $listDir = array();
-        $i = 0;
+
 
         while($file = readdir($dir)) {
             if($file != '.' && $file != '..') {
                 if (!empty($pData)) {
-                    $listDir[$i] = $pData.'/'.$file;
+                    $listDir[] = $pData.'/'.$file;
+
                 } else {
-                   $listDir[$i] = $file;
+                   $listDir[] = $file;
+
                 }
-                $i = $i + 1;
-            }
+
+
+          }
         }
     closedir($dir);
     }

@@ -5,52 +5,30 @@
     <title></title>
   </head>
   <body>
+
     <?php
+
     $dossier = getcwd();
     $contenu= scandir($dossier);
-
 
     foreach ($contenu as $value) {
 
     if (is_dir(realpath($value))) {
-    echo "<form method='POST'";
-    echo "<input type='submit' name='selected' value='".realpath($value)."'";
+    echo "<form method='POST' action=''>";
+    echo "<input type='submit' name='selected' value='".$value."'>";
     echo "</form>";
     }
     else {
-    echo "file'<br>''";
+    echo "file <br>";
     }
     if (isset($_POST['selected']))
     {
     $selected =$_POST['selected'];
-    echo "$selected";
+
+    echo $selected;
     }
     }
 
       ?>
   </body>
 </html>
-
-<?php
-$dossier = getcwd();
-$contenu= scandir($dossier);
-
-
-foreach ($contenu as $value) {
-
-if (is_dir(realpath($value))) {
-echo "<form method='POST'";
-echo "<input type='submit' name='selected' value='".realpath($value)."'";
-echo "</form>";
-}
-else {
-echo "file'<br>''";
-}
-if (isset($_POST['selected']))
-{
-$selected =$_POST['selected'];
-echo "$selected";
-}
-}
-
-  ?>
