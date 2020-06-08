@@ -14,26 +14,33 @@
 <body>
 
 
-<!-- exploratur de fichier
-1 script pout récup la liste de dossier pour le breadcrumbs et affiche les dernier dossier à partir du dossier courant-->
-
-<nav aria-label="breadcrumb">
-  <ol class="breadcrumb">
-    <li class="breadcrumb-item active" ><a href="index2.php">Home</a></li>
 
 
-  </ol>
-</nav>
+
+<nav aria-label='breadcrumb'>
+  <ol class='breadcrumb'>
+    <li class='breadcrumb-item active' ><a href='index2.php'>Home</a></li>
 <?php
+// $dossier = getcwd();
+// $liens =scandir($dossier);
 
+
+
+echo "<li>".include once "ariane.php".;"</li>
+
+
+</ol>
+</nav>";
+
+?>
+
+
+<?php
 include "test2.php";
 
 
 
 
-
-
-// récupérer le chemin
 
 echo"<table class=\"table table-dark table-hover mb-5\">
   <thead>
@@ -50,6 +57,7 @@ echo"<table class=\"table table-dark table-hover mb-5\">
 
 
   foreach ($list as $item) {
+    global $item;
      $size = "<span style='font-size:12px;'>".filesize($item)."</span>";
      $type = "<span style='font-size:12px;'>".mime_content_type($item)."</span>";
      $date = "<span style='font-size:12px;'>".date("d-m-Y H:i:s", filemtime($item))."</span>";
@@ -65,9 +73,6 @@ echo"<table class=\"table table-dark table-hover mb-5\">
   }
  ?>
 
-<!-- "1 script qui garde le lien de du dernier dossier"-->
-
-<!-- 1 script qui recup et affiche les dossier et fichier un liens pour ouvrir les dossier -->
 
 
 
