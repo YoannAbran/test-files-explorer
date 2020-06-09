@@ -26,13 +26,33 @@
 
 
 
-echo "<li>".include "ariane.php"."</li>
+$def = "index";
+$dPath = $_SERVER['PHP_SELF'];
+$dChunks = explode("/", $dPath);
 
+echo('<a class="dynNav" href="/">Accueil</a><span class="dynNav"> > </span>');
+for($i=1; $i<count($dChunks); $i++ ){
+	echo('<a class="dynNav" href="/');
+	for($j=1; $j<=$i; $j++ ){
+		echo($dChunks[$j]);
+		if($j!=count($dChunks)-1){ echo("/");}
+	}
 
-</ol>
-</nav>";
+	if($i==count($dChunks)-1){
+		$prChunks = explode(".", $dChunks[$i]);
+		if ($prChunks[0] == $def) $prChunks[0] = "";
+		$prChunks[0] = $prChunks[0] . "</a>";
+	}
+	else $prChunks[0]=$dChunks[$i] . '</a><span class="dynNav"> > </span>';
+	echo('">');
+	echo(str_replace("_" , " " , $prChunks[0]));
+}
 
 ?>
+</ol>
+</nav>
+
+
 
 
 <?php
@@ -72,6 +92,45 @@ echo"<table class=\"table table-dark table-hover mb-5\">
      }
   }
  ?>
+ <?php include "gestionfichier.php" ?>
+       <section class="container">
+   <div class="row">
+     <!-- Création de dossier -->
+     <div class="col-sm p-3 mb-2 bg-dark text-white text-center rounded border border-light">
+       <form class="mb-2" action="<?php $_SERVER['PHP_SELF'] ?>" method="post">
+          <label for="nom_dossier" class="text-uppercase font-weight-bold">création de dossier</label>
+          <input type="text" placeholder="Nom du nouveau dossier" name="nom_dossier"><button type="submit" class="ml-1">Créer</button>
+       </form>
+       <?php
+         echo $text_dossier;
+       ?>
+
+     </div>
+
+     <!-- Création de fichier -->
+     <div class="col-sm p-3 mb-2 bg-dark text-white text-center rounded border border-light">
+       <form class="mb-2" action="<?php $_SERVER['PHP_SELF'] ?>" method="post">
+          <label for="nom_fichier" class="text-uppercase font-weight-bold">création de fichier</label>
+          <input type="text" placeholder="Nom du nouveau fichier" name="nom_fichier"><button type="submit" class="ml-1">Créer</button>
+       </form>
+       <?php
+         echo $text_fichier;
+       ?>
+     </div>
+
+     <!-- Suppression de fichier -->
+     <div class="col-sm p-3 mb-2 bg-dark text-white text-center rounded border border-light">
+       <form class="mb-2" action="<?php $_SERVER['PHP_SELF'] ?>" method="post">
+          <label for="suppr_fichier" class="text-uppercase font-weight-bold">suppression de fichier</label>
+          <input type="text" placeholder="Nom du fichier à supprimer" name="suppr_fichier"><button type="submit" class="ml-1">Supprimer</button>
+       </form>
+       <?php
+         echo $text_suppr;
+       ?>
+     </div>
+
+   </div>
+ </section>
 
 
 
