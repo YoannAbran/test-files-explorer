@@ -26,7 +26,7 @@
 
 
 
-echo "<li>".include once "ariane.php".;"</li>
+echo "<li>".include "ariane.php"."</li>
 
 
 </ol>

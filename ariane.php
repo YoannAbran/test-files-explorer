@@ -1,25 +1,25 @@
 <?php
 
-// Fonction fildarianise
-function fildarianise(&$titres, $separateur=' > ')
-{
 
-   $baseUrl = 'http://'.$_SERVER['HTTP_HOST'];
-   $retour = '<span class="ariane"><a href=' . $baseUrl . '>' . $titres[0] . '</a>';
-   $chemin = explode("/", substr($_SERVER['PHP_SELF'], 1));
+$def = "index";
+$dPath = $_SERVER['PHP_SELF'];
+$dChunks = explode("/", $dPath);
 
-   if (is_array($chemin)) foreach ($chemin as $k=>$v) if ($titres[$v] !== false)
-   {
-      $baseUrl .= "/$v";
-      $titre = isset($titres[$v]) ? $titres[$v] : $v;
-      $retour .= $separateur . '<a href=' . $baseUrl . '>' . $titre . '</a>';
-   }
-   $retour .= '</span>';
-   return $retour;
+echo('<a class="dynNav" href="/">Accueil</a><span class="dynNav"> > </span>');
+for($i=1; $i<count($dChunks); $i++ ){
+	echo('<a class="dynNav" href="/');
+	for($j=1; $j<=$i; $j++ ){
+		echo($dChunks[$j]);
+		if($j!=count($dChunks)-1){ echo("/");}
+	}
+
+	if($i==count($dChunks)-1){
+		$prChunks = explode(".", $dChunks[$i]);
+		if ($prChunks[0] == $def) $prChunks[0] = "";
+		$prChunks[0] = $prChunks[0] . "</a>";
+	}
+	else $prChunks[0]=$dChunks[$i] . '</a><span class="dynNav"> > </span>';
+	echo('">');
+	echo(str_replace("_" , " " , $prChunks[0]));
 }
-
-// Un essai...
-$titres = array(0=>'accueil', 'cat1'=>'Catégorie 1', 'cat2'=>'Categorie 2', 'contact.php'=>'Contact', 'index.php'=>false);
-echo fildarianise($titres);
-
 ?>
