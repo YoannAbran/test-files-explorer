@@ -1,5 +1,6 @@
 <?php
 // Création de dossier
+
 if (empty($_POST["nom_dossier"])) {
   $text_dossier = "Indiquer le nom du dossier à créer.";
 }

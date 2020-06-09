@@ -1,0 +1,39 @@
+include 'gestionfichier.php';
+    echo "<section class='container'>
+  <div class='row'>
+    <!-- Création de dossier -->
+    <div class='col-sm p-3 mb-2 bg-dark text-white text-center rounded border border-light'>
+      <form class='mb-2' action='" .$_GET['dir']. "' method='post'>
+         <label for='nom_dossier' class='text-uppercase font-weight-bold'>création de dossier</label>
+         <input type='text' placeholder='Nom du nouveau dossier' name='nom_dossier'><button type='submit' class='ml-1'>Créer</button>
+      </form>";
+
+        echo $text_dossier;
+
+
+  echo   "</div>";
+
+
+  echo "  <div class='col-sm p-3 mb-2 bg-dark text-white text-center rounded border border-light'>
+      <form class='mb-2' action='" .$_GET['dir']. "' method='post'>
+         <label for='nom_fichier' class='text-uppercase font-weight-bold'>création de fichier</label>
+         <input type='text' placeholder='Nom du nouveau fichier' name='nom_fichier'><button type='submit' class='ml-1'>Créer</button>
+      </form>";
+
+        echo $text_fichier;
+
+    echo "</div>";
+
+
+    echo "<div class='col-sm p-3 mb-2 bg-dark text-white text-center rounded border border-light'>
+      <form class='mb-2' action='".$_GET['dir']. "' method='post'>
+         <label for='suppr_fichier' class='text-uppercase font-weight-bold'>suppression de fichier</label>
+         <input type='text' placeholder='Nom du fichier à supprimer' name='suppr_fichier'><button type='submit' class='ml-1'>Supprimer</button>
+      </form>";
+
+        echo $text_suppr;
+
+  echo  "</div>
+
+  </div>
+</section>";
