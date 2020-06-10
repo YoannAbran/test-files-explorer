@@ -60,62 +60,64 @@ echo"<table class=\"table table-dark table-hover mb-5\">
 
 
   foreach ($list as $item) {
-    global $item;
+    $baseitem =basename($item);
      $size = "<span style='font-size:12px;'>".filesize($item)."</span>";
      $type = "<span style='font-size:12px;'>".mime_content_type($item)."</span>";
      $date = "<span style='font-size:12px;'>".date("d-m-Y H:i:s", filemtime($item))."</span>";
 
      if (is_dir("$item")) {
         echo "<tr>
-        <td><i class=\"fas fa-folder text-primary \"></i> <a href=\"".$_SERVER['PHP_SELF']."?dir=".rawurlencode($item).
-        "\">$item</a></td><td>$size<td>$type</td><td>$date</td>";
+        <td><i class=\"fas fa-folder text-primary \"></i> <a href=\"".$_SERVER['PHP_SELF']."?dir=".rawurlencode($baseitem).
+        "\">$baseitem</a></td><td>$size<td>$type</td><td>$date</td>";
      }
      else {
-        echo "<tr><td><i class=\"fas fa-file text-danger\"></i> <a class='text-white ' href=\"".$item."\">$item</a></td><td>$size</td><td>$type</td><td>$date</td></tr>";
+        echo "<tr><td><i class=\"fas fa-file text-danger\"></i> <a class='text-white ' href=\"".$item."\">$baseitem</a></td><td>$size</td><td>$type</td><td>$date</td></tr>";
      }
   }
 
-?>
 
-<section class="container">
-<div class="row">
-<!-- Création de dossier -->
-<div class="col-sm p-3 mb-2 bg-dark text-white text-center rounded border border-light">
-<form class="mb-2" action="<?php $_GET['dir'] ?>" method="post">
-   <label for="nom_dossier" class="text-uppercase font-weight-bold">création de dossier</label>
-   <input type="text" placeholder="Nom du nouveau dossier" name="nom_dossier"><button type="submit" class="ml-1">Créer</button>
-</form>
-<?php
-  echo $text_dossier;
-?>
+  echo "<section class='container'>
+<div class='row'>
+  <!-- Création de dossier -->
+  <div class='col-sm p-3 mb-2 bg-dark text-white text-center rounded border border-light'>
+    <form class='mb-2' action='' method='post'>
+       <label for='nom_dossier' class='text-uppercase font-weight-bold'>création de dossier</label>
+       <input type='text' placeholder='Nom du nouveau dossier' name='nom_dossier'><button type='submit' class='ml-1'>Créer</button>
+    </form>";
+
+      echo $text_dossier;
+
+
+echo   "</div>";
+
+
+echo "  <div class='col-sm p-3 mb-2 bg-dark text-white text-center rounded border border-light'>
+    <form class='mb-2' action='' method='post'>
+       <label for='nom_fichier' class='text-uppercase font-weight-bold'>création de fichier</label>
+       <input type='text' placeholder='Nom du nouveau fichier' name='nom_fichier'><button type='submit' class='ml-1'>Créer</button>
+    </form>";
+
+      echo $text_fichier;
+
+  echo "</div>";
+
+
+  echo "<div class='col-sm p-3 mb-2 bg-dark text-white text-center rounded border border-light'>
+    <form class='mb-2' action='' method='post'>
+       <label for='suppr_fichier' class='text-uppercase font-weight-bold'>suppression de fichier</label>
+       <input type='text' placeholder='Nom du fichier à supprimer' name='suppr_fichier'><button type='submit' class='ml-1'>Supprimer</button>
+    </form>";
+
+      echo $text_suppr;
+
+echo  "</div>
 
 </div>
+</section>";
 
-<!-- Création de fichier -->
-<div class="col-sm p-3 mb-2 bg-dark text-white text-center rounded border border-light">
-<form class="mb-2" action="<?php $_GET['dir'] ?>" method="post">
-   <label for="nom_fichier" class="text-uppercase font-weight-bold">création de fichier</label>
-   <input type="text" placeholder="Nom du nouveau fichier" name="nom_fichier"><button type="submit" class="ml-1">Créer</button>
-</form>
-<?php
-  echo $text_fichier;
+
+
 ?>
-</div>
-
-<!-- Suppression de fichier -->
-<div class="col-sm p-3 mb-2 bg-dark text-white text-center rounded border border-light">
-<form class="mb-2" action="<?php $_GET['dir'] ?>" method="post">
-   <label for="suppr_fichier" class="text-uppercase font-weight-bold">suppression de fichier</label>
-   <input type="text" placeholder="Nom du fichier à supprimer" name="suppr_fichier"><button type="submit" class="ml-1">Supprimer</button>
-</form>
-<?php
-  echo $text_suppr;
-?>
-</div>
-
-</div>
-</section>
-
 
 
 
