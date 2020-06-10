@@ -14,7 +14,7 @@
 <body>
 
 
-<?php echo $_SERVER['DOCUMENT_ROOT']; ?>
+
 
 
 <nav aria-label='breadcrumb'>
@@ -37,20 +37,13 @@ foreach($crumbs as $crumb){
     $url_pre .= $crumb;
     echo "<a href='?dir=".$url_pre."'>/ $crumb </a>";
     $url_pre .= '/'; // add this after you echo the link, so that dir doesn't start
-  }}
+  }
+}
 ?>
 </ol>
 </nav>
 
-
-
-
 <?php
-
-
-
-
-
 
 echo"<table class=\"table table-dark table-hover mb-5\">
   <thead>
@@ -88,7 +81,7 @@ echo"<table class=\"table table-dark table-hover mb-5\">
 <div class="row">
 <!-- Création de dossier -->
 <div class="col-sm p-3 mb-2 bg-dark text-white text-center rounded border border-light">
-<form class="mb-2" action="<?php $_SERVER['DOCUMENT_ROOT'].$_GET['dir'] ?>" method="post">
+<form class="mb-2" action="<?php $_GET['dir'] ?>" method="post">
    <label for="nom_dossier" class="text-uppercase font-weight-bold">création de dossier</label>
    <input type="text" placeholder="Nom du nouveau dossier" name="nom_dossier"><button type="submit" class="ml-1">Créer</button>
 </form>
@@ -100,7 +93,7 @@ echo"<table class=\"table table-dark table-hover mb-5\">
 
 <!-- Création de fichier -->
 <div class="col-sm p-3 mb-2 bg-dark text-white text-center rounded border border-light">
-<form class="mb-2" action="<?php $_SERVER['DOCUMENT_ROOT'].$_GET['dir'] ?>" method="post">
+<form class="mb-2" action="<?php $_GET['dir'] ?>" method="post">
    <label for="nom_fichier" class="text-uppercase font-weight-bold">création de fichier</label>
    <input type="text" placeholder="Nom du nouveau fichier" name="nom_fichier"><button type="submit" class="ml-1">Créer</button>
 </form>
@@ -111,7 +104,7 @@ echo"<table class=\"table table-dark table-hover mb-5\">
 
 <!-- Suppression de fichier -->
 <div class="col-sm p-3 mb-2 bg-dark text-white text-center rounded border border-light">
-<form class="mb-2" action="<?php $_SERVER['DOCUMENT_ROOT'].$_GET['dir'] ?>" method="post">
+<form class="mb-2" action="<?php $_GET['dir'] ?>" method="post">
    <label for="suppr_fichier" class="text-uppercase font-weight-bold">suppression de fichier</label>
    <input type="text" placeholder="Nom du fichier à supprimer" name="suppr_fichier"><button type="submit" class="ml-1">Supprimer</button>
 </form>
