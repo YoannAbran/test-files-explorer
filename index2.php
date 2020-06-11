@@ -20,9 +20,9 @@
   <ol class='breadcrumb bg-dark  m-4 p-4'>
     <li class='breadcrumb-item active ' ><a class='text-light'href='index2.php'>&nbspRacine&nbsp</a></li>
 <?php
-include "test2.php";
+include "scandir.php";
 include "gestionfichier.php";
-include "modal.php";
+
 if (!empty($_GET['dir'])){
   $crumbs=explode('/',$_GET['dir']);
 }
