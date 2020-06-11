@@ -2,6 +2,9 @@
 if (!empty($_GET['dir'])){
 $chemindoss = $_GET['dir'];
 }
+else {
+  $chemindoss = getcwd();
+}
 // Création de dossier
 
 if (empty($_POST["nom_dossier"])) {
@@ -22,19 +25,20 @@ else {
   }
 
 // Création de fichier
+
 if (empty($_POST["nom_fichier"])) {
-  $text_fichier = "Indiquer le nom du fichier à créer.<br>(il sera créé en .txt)";
+  $text_fichier = "Indiquer le nom du fichier à créer.<br>Préciser l'extension du fichier<br>";
 }
 else {
     $nomcrefichier = $_POST["nom_fichier"];
     $nouveau_fichier = $chemindoss.'/'.$nomcrefichier; // variable se créé après avoir vérifier si le champ est vide ou pas
-    if (file_exists($nouveau_fichier.".txt") && !is_dir($nouveau_fichier.".txt")) {
-      $text_fichier = "Le fichier $nomcrefichier.txt existe déjà.";
+    if (file_exists($nouveau_fichier) && !is_dir($nouveau_fichier)) {
+      $text_fichier = "Le fichier $nomcrefichier existe déjà.";
     }
     else {
-      fopen($nouveau_fichier.".txt","x+");
-      if (file_exists($nouveau_fichier.".txt") && !is_dir($nouveau_fichier.".txt")) {
-        $text_fichier = "Le fichier $nomcrefichier.txt a bien été créé.";
+      fopen($nouveau_fichier,"x+");
+      if (file_exists($nouveau_fichier) && !is_dir($nouveau_fichier)) {
+        $text_fichier = "Le fichier $nomcrefichier a bien été créé.";
       }
     }
   }
@@ -51,7 +55,8 @@ else {
     }
     else {
       if (is_dir($del_fichier)) {
-        $text_suppr= "$nomdelfichier est un dossier et non un fichier.";
+        rmdir($del_fichier);
+        $text_suppr = "le dossier $nomdelfichier a bien été supprimé.";
       }
       else {
         unlink($del_fichier);
