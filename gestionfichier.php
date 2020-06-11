@@ -27,7 +27,7 @@ else {
 // Création de fichier
 
 if (empty($_POST["nom_fichier"])) {
-  $text_fichier = "Indiquer le nom du fichier à créer.<br>Préciser l'extension du fichier<br>";
+  $text_fichier = "Indiquer le nom du fichier à créer.<br>Préciser l'extension du fichier.<br>";
 }
 else {
     $nomcrefichier = $_POST["nom_fichier"];

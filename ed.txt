@@ -53,3 +53,9 @@ echo "<section class='container'>
 
 
 echo   "</div>";
+
+
+<th scope=\"col\">Nom</th>
+<th scope=\"col\">Taille</th>
+<th scope=\"col\">Type</th>
+<th scope=\"col\">Date modif</th>
