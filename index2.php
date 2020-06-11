@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -60,14 +58,15 @@ echo"<table class=\"table table-dark table-hover mb-5\">
 
 
   foreach ($list as $item) {
-    $baseitem =basename($item);
+
      $size = "<span style='font-size:12px;'>".filesize($item)."</span>";
      $type = "<span style='font-size:12px;'>".mime_content_type($item)."</span>";
-     $date = "<span style='font-size:12px;'>".date("d-m-Y H:i:s", filemtime($item))."</span>";
+     $date = "<span style='font-size:12px;'>".date("d-m-Y H:i:s",filemtime($item))."</span>";
+     $baseitem =basename($item);
 
      if (is_dir("$item")) {
         echo "<tr>
-        <td><i class=\"fas fa-folder text-primary \"></i> <a href=\"".$_SERVER['PHP_SELF']."?dir=".rawurlencode($baseitem).
+        <td><i class=\"fas fa-folder text-primary \"></i> <a href=\"".$_SERVER['PHP_SELF']."?dir=".rawurlencode($item).
         "\">$baseitem</a></td><td>$size<td>$type</td><td>$date</td>";
      }
      else {
