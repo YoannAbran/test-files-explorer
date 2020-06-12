@@ -5,7 +5,7 @@
 function ScanDirectory($pDir, $pData) {
 
     if (!empty($pData)) {
-        $pDir = $pDir.'/'.$pData;
+        $pDir = $pDir.DIRECTORY_SEPARATOR.$pData;
     }
 
     if ($dir = opendir($pDir)) {
@@ -15,7 +15,7 @@ function ScanDirectory($pDir, $pData) {
         while($file = readdir($dir)) {
             if($file != '.' && $file != '..') {
                 if (!empty($pData)) {
-                    $listDir[] = $pData.'/'.$file;
+                    $listDir[] = $pData.DIRECTORY_SEPARATOR.$file;
 
                 } else {
                    $listDir[] = $file;

@@ -18,13 +18,19 @@
 
 <nav aria-label='breadcrumb' class=''>
   <ol class='breadcrumb bg-dark  m-4 p-4'>
-    <li class='breadcrumb-item active ' ><a class='text-light'href='index2.php'>&nbspRacine&nbsp</a></li>
+    <li class='breadcrumb-item active ' ><a class='text-light h5'href='index2.php'>&nbspRacine&nbsp</a></li>
 <?php
+$home ="home";
+if(!is_dir($home)){
+mkdir("home");
+}
+chdir(getcwd().DIRECTORY_SEPARATOR.$home);
+
 include "scandir.php";
 include "gestionfichier.php";
 
 if (!empty($_GET['dir'])){
-  $crumbs=explode('/',$_GET['dir']);
+  $crumbs=explode(DIRECTORY_SEPARATOR,$_GET['dir']);
 }
 
 // this splits the sections of $_GET['dir'] separated by / into an array of values
@@ -35,8 +41,8 @@ $url_pre=''; // we'll use this to keep track of the crumbs we've sifted through 
 if (!empty($_GET['dir'])){
 foreach($crumbs as $crumb){
     $url_pre .= $crumb;
-    echo "<li class=''><a class='text-light' href='?dir=".$url_pre."'>&nbsp/&nbsp$crumb&nbsp</a></li>";
-    $url_pre .= '/'; // add this after you echo the link, so that dir doesn't start
+    echo "<li class=''><a class='text-light h5' href='?dir=".$url_pre."'>&nbsp/&nbsp$crumb&nbsp</a></li>";
+    $url_pre .= DIRECTORY_SEPARATOR; // add this after you echo the link, so that dir doesn't start
   }
 }
 ?>
@@ -45,7 +51,7 @@ foreach($crumbs as $crumb){
 
 <?php
 
-echo"<table class=\"table table-dark table-striped table-hover m-4 rounded border-light\">
+echo"<div class='container'><table class=\"table table-dark table-striped table-hover m-4 rounded border-light\">
   <thead>
     <tr>
       <th scope=\"col\">Nom</th>
@@ -84,11 +90,11 @@ echo"<table class=\"table table-dark table-striped table-hover m-4 rounded borde
      }
   }
 }
-
-  echo "<section class='container-fluid '>
-<div class='row'>
+echo "</div>";
+  echo "<section class='container-fluid justify-content-center '>
+<div class='row container-fluid'>
   <!-- Création de dossier -->
-  <div class='col-sm p-4 m-4 bg-dark text-white text-center rounded border border-light'>
+  <div class='col-sm p-3 m-4 bg-dark text-white text-center rounded border border-light'>
     <form class='mb-2' action='' method='post'>
        <label for='nom_dossier' class='text-uppercase font-weight-bold'>création de dossier</label><br>
        <input type='text' placeholder='Nom du nouveau dossier' name='nom_dossier'><button type='submit' class='ml-1'>Créer</button>
@@ -100,7 +106,7 @@ echo"<table class=\"table table-dark table-striped table-hover m-4 rounded borde
 echo   "</div>";
 
 
-echo "  <div class='col-sm p-4 m-4 bg-dark text-white text-center rounded border border-light'>
+echo "  <div class='col-sm p-3 m-4 bg-dark text-white text-center rounded border border-light'>
     <form class='mb-2' action='' method='post'>
        <label for='nom_fichier' class='text-uppercase font-weight-bold'>création de fichier</label><br>
        <input type='text' placeholder='Nom du nouveau fichier' name='nom_fichier'><button type='submit' class='ml-1'>Créer</button>
@@ -111,7 +117,7 @@ echo "  <div class='col-sm p-4 m-4 bg-dark text-white text-center rounded border
   echo "</div>";
 
 
-  echo "<div class='col-sm p-4 m-4 bg-dark text-white text-center rounded border border-light'>
+  echo "<div class='col-sm p-3 m-4 bg-dark text-white text-center rounded border border-light'>
     <form class='mb-2' action='' method='post'>
        <label for='suppr_fichier' class='text-uppercase font-weight-bold'>suppression de fichier</label><br>
        <input type='text' placeholder='Nom du fichier à supprimer' name='suppr_fichier'>

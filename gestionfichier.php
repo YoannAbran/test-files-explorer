@@ -12,7 +12,7 @@ if (empty($_POST["nom_dossier"])) {
 }
 else {
     $nomdossier = $_POST["nom_dossier"];
-    $nouveau_dossier = $chemindoss.'/'.$nomdossier; // variable se créé après avoir vérifier si le champ est vide ou pas
+    $nouveau_dossier = $chemindoss.DIRECTORY_SEPARATOR.$nomdossier; // variable se créé après avoir vérifier si le champ est vide ou pas
     if (file_exists($nouveau_dossier) && is_dir($nouveau_dossier)) {
       $text_dossier = "Le dossier $nomdossier existe déjà.";
     }
@@ -31,7 +31,7 @@ if (empty($_POST["nom_fichier"])) {
 }
 else {
     $nomcrefichier = $_POST["nom_fichier"];
-    $nouveau_fichier = $chemindoss.'/'.$nomcrefichier; // variable se créé après avoir vérifier si le champ est vide ou pas
+    $nouveau_fichier = $chemindoss.DIRECTORY_SEPARATOR.$nomcrefichier; // variable se créé après avoir vérifier si le champ est vide ou pas
     if (file_exists($nouveau_fichier) && !is_dir($nouveau_fichier)) {
       $text_fichier = "Le fichier $nomcrefichier existe déjà.";
     }
@@ -49,7 +49,7 @@ if (empty($_POST["suppr_fichier"])) {
 }
 else {
     $nomdelfichier =$_POST["suppr_fichier"];
-    $del_fichier = $chemindoss.'/'.$nomdelfichier; // variable se créé après avoir vérifier si le champ est vide ou pas
+    $del_fichier = $chemindoss.DIRECTORY_SEPARATOR.$nomdelfichier; // variable se créé après avoir vérifier si le champ est vide ou pas
     if (!file_exists($del_fichier)) {
       $text_suppr= "Le fichier $nomdelfichier n'existe pas.";
     }
