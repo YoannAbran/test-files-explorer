@@ -1,6 +1,5 @@
 <?php
 
-
 //fonction pour pointer le dossier courant et scanner son contenu
 function ScanDirectory($pDir, $pData) {
 
@@ -24,7 +23,6 @@ function ScanDirectory($pDir, $pData) {
 //sinon enregistre les fichier dans le tableau
                 } else {
                    $listDir[] = $file;
-
                 }
           }
         }
@@ -34,7 +32,6 @@ function ScanDirectory($pDir, $pData) {
 //retourn le tableau
     return $listDir;
 }
-
 
 //chemin du fichier index
 $defaultDir = getcwd();

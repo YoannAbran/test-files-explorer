@@ -23,7 +23,6 @@ mkdir("home");
 }
 chdir(getcwd().DIRECTORY_SEPARATOR.$home);
 
-
 include "scandir.php";
 include "gestionfichier.php";
 // vérifie que la variable n'est pas vide
@@ -34,7 +33,6 @@ if (!empty($_GET['dir'])){
 
 // pour garder la trce de l'endroit ou l'on est dans le fil d'arianne
 $url_pre='';
-
 
 //on récupère chaque élément dans une variable $crumb du tableau $crumbs,on récupère les élément pour créer le fil d'arianne
 if (!empty($_GET['dir'])){
@@ -51,7 +49,8 @@ foreach($crumbs as $crumb){
 
 <?php
 // tableau et table header
-echo"<div class='container'><table class=\"table table-dark table-striped table-hover m-4 rounded border-light\">
+echo"<div class='container'>
+  <table class=\"table table-dark table-striped table-hover m-4 rounded border-light\">
   <thead>
     <tr>
       <th scope=\"col\">Nom</th>
@@ -93,7 +92,7 @@ echo"<div class='container'><table class=\"table table-dark table-striped table-
 }
 echo "</div>";
   echo "<section class='container-fluid justify-content-center '>
-          <div class='row container-fluid'>";
+          <div class='row d-flex'>";
 // Création de dossier
           echo  "<div class='col-sm p-3 m-4 bg-dark text-white text-center rounded border border-light'>
               <form class='mb-2' action='' method='post'>
@@ -134,11 +133,7 @@ echo  "</div>
   </div>
 </section>";
 
-
-
 ?>
-
-
 
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>

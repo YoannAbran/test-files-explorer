@@ -7,7 +7,6 @@ else {
   $chemindoss = getcwd();
 }
 
-
 // Création de dossier
 
 // Vérifie si le $_POST est vide
