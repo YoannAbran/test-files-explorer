@@ -34,6 +34,7 @@ function ScanDirectory($pDir, $pData) {
 }
 
 //chemin du fichier index
+
 $defaultDir = getcwd();
 
 //utilisation de la fonction pour changer les dossier et fichier selon le dossier dans lequel on ce trouve

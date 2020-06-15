@@ -17,16 +17,17 @@
   <ol class='breadcrumb bg-dark  m-4 p-4'>
     <li class='breadcrumb-item active ' ><a class='text-light h5'href='index2.php'>&nbspRacine&nbsp</a></li>
 <?php
-//script pour démarré dans un sous-dossier au script
+// script pour démarré dans un sous-dossier au script
 $home ="home";
 if(!is_dir($home)){
 mkdir("home");
 }
 chdir(getcwd().DIRECTORY_SEPARATOR.$home);
+
 include "modal.php";
 include "scandir.php";
-include "suppr.php";
-// include "gestionfichier.php";
+// include "suppr.php";
+include "gestionfichier.php";
 // vérifie que la variable n'est pas vide
 if (!empty($_GET['dir'])){
 // transforme l'url en tableau en prenant le / comme élément qui sépare les élément
@@ -85,7 +86,7 @@ echo"<div class='container'>
         <td><button class='btn text-primary' type='button'  data-toggle='modal' data-target='#copymodal'><i class='fas fa-copy'></i></button></td>
         <td><button class='btn text-danger' type='button'  data-toggle='modal' data-target='#cutmodal'><i class='fas fa-cut'></i></button></td>
         <td><button class='btn text-primary' type='button'  data-toggle='modal' data-target='#pastemodal'><i class='fas fa-paste'></i></button></td>
-        <td><button class='btn text-danger' type='button' value='".$baseitem."' data-value='".$item."'  data-toggle='modal' data-target='#deletemodal'><i class='fas fa-trash-alt'></i></button></td></tr>
+        <td><button class='btn text-danger' type='submit' value='".$item."' data-value='".$item."'  data-toggle='modal' data-target='#deletemodal'><i class='fas fa-trash-alt'></i></button></td></tr>
         ";
      }
 
@@ -98,7 +99,7 @@ echo"<div class='container'>
         <td><button class='btn text-primary' type='button'  data-toggle='modal' data-target='#copymodal'><i class='fas fa-copy'></i></button></td>
         <td><button class='btn text-danger' type='button'  data-toggle='modal' data-target='#cutmodal'><i class='fas fa-cut'></i></button></td>
         <td><button class='btn text-primary' type='button'  data-toggle='modal' data-target='#pastemodal'><i class='fas fa-paste'></i></button></td>
-        <td><button class='btn text-danger' type='button'  data-toggle='modal' data-target='#deletemodal'><i class='fas fa-trash-alt'></i></button></td></tr>";
+        <td><button class='btn text-danger' type='submit' value='".$baseitem."' data-value='".$item."'  data-toggle='modal' data-target='#deletemodal'><i class='fas fa-trash-alt'></i></button></td></tr>";
      }
   }
 }
@@ -136,7 +137,7 @@ echo "  <div class='col-sm p-3 m-4 bg-dark text-white text-center rounded border
           <form class='mb-2' action='' method='post'>
             <label for='suppr_fichier' class='text-uppercase font-weight-bold'>suppression de fichier</label><br>
             <input type='text' placeholder='Nom du fichier à supprimer' name='suppr_fichier'>
-            <button type='submit' onclick='return confirm('Are you sure?')' class='ml-1' >Supprimer</button>
+            <button type='submit' onclick='myFunction()' class='ml-1' >Supprimer</button>
           </form><br>";
 
       // echo $text_suppr;
@@ -147,7 +148,18 @@ echo  "</div>
 </section>";
 
 ?>
-
+<script>
+function myFunction() {
+  var txt;
+  var r = confirm("êtes vous sur ?!");
+  if (r == true) {
+    // txt = "You pressed OK!";
+  } else {
+    // txt = "You pressed Cancel!";
+  }
+  document.getElementById("demo").innerHTML = txt;
+}
+</script>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
