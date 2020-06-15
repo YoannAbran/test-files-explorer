@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 
+
 </head>
 
 <body>
@@ -22,9 +23,10 @@ if(!is_dir($home)){
 mkdir("home");
 }
 chdir(getcwd().DIRECTORY_SEPARATOR.$home);
-
+include "modal.php";
 include "scandir.php";
-include "gestionfichier.php";
+include "suppr.php";
+// include "gestionfichier.php";
 // vérifie que la variable n'est pas vide
 if (!empty($_GET['dir'])){
 // transforme l'url en tableau en prenant le / comme élément qui sépare les élément
@@ -78,21 +80,32 @@ echo"<div class='container'>
         "\">$baseitem</a></td>
         <td>$size</td>
         <td>$type</td>
-        <td>$date</td></tr>";
+        <td>$date</td>
+
+        <td><button class='btn text-primary' type='button'  data-toggle='modal' data-target='#copymodal'><i class='fas fa-copy'></i></button></td>
+        <td><button class='btn text-danger' type='button'  data-toggle='modal' data-target='#cutmodal'><i class='fas fa-cut'></i></button></td>
+        <td><button class='btn text-primary' type='button'  data-toggle='modal' data-target='#pastemodal'><i class='fas fa-paste'></i></button></td>
+        <td><button class='btn text-danger' type='button' value='".$baseitem."' data-value='".$item."'  data-toggle='modal' data-target='#deletemodal'><i class='fas fa-trash-alt'></i></button></td></tr>
+        ";
      }
 
 // sinon c'est un fichier on les affiches avec un lien pour afficher leur contenu si le type le permet
      else {
-        echo "<tr><td><i class=\"fas fa-file text-danger\"></i> <a class='text-white ' href=\"".$item."\">$baseitem</a></td>
+        echo "<tr><td><i class='fas fa-file text-danger'></i> <a class='text-white ' href='".$item."'>$baseitem</a></td>
         <td>$size</td>
         <td>$type</td>
-        <td>$date</td></tr>";
+        <td>$date</td>
+        <td><button class='btn text-primary' type='button'  data-toggle='modal' data-target='#copymodal'><i class='fas fa-copy'></i></button></td>
+        <td><button class='btn text-danger' type='button'  data-toggle='modal' data-target='#cutmodal'><i class='fas fa-cut'></i></button></td>
+        <td><button class='btn text-primary' type='button'  data-toggle='modal' data-target='#pastemodal'><i class='fas fa-paste'></i></button></td>
+        <td><button class='btn text-danger' type='button'  data-toggle='modal' data-target='#deletemodal'><i class='fas fa-trash-alt'></i></button></td></tr>";
      }
   }
 }
 echo "</div>";
   echo "<section class='container-fluid justify-content-center '>
           <div class='row d-flex'>";
+
 // Création de dossier
           echo  "<div class='col-sm p-3 m-4 bg-dark text-white text-center rounded border border-light'>
               <form class='mb-2' action='' method='post'>
@@ -101,7 +114,7 @@ echo "</div>";
                 <button type='submit' class='ml-1'>Créer</button>
               </form><br>";
 
-      echo $text_dossier;
+      // echo $text_dossier;
 
 
 echo   "</div>";
@@ -111,10 +124,10 @@ echo "  <div class='col-sm p-3 m-4 bg-dark text-white text-center rounded border
           <form class='mb-2' action='' method='post'>
             <label for='nom_fichier' class='text-uppercase font-weight-bold'>création de fichier</label><br>
             <input type='text' placeholder='Nom du nouveau fichier' name='nom_fichier'>
-            <button type='submit' class='ml-1'>Créer</button>
+            <button type='submit'  class='ml-1'>Créer</button>
           </form><br>";
 
-      echo $text_fichier;
+      // echo $text_fichier;
 
   echo "</div>";
 
@@ -123,10 +136,10 @@ echo "  <div class='col-sm p-3 m-4 bg-dark text-white text-center rounded border
           <form class='mb-2' action='' method='post'>
             <label for='suppr_fichier' class='text-uppercase font-weight-bold'>suppression de fichier</label><br>
             <input type='text' placeholder='Nom du fichier à supprimer' name='suppr_fichier'>
-            <button type='submit' class='ml-1' >Supprimer</button>
+            <button type='submit' onclick='return confirm('Are you sure?')' class='ml-1' >Supprimer</button>
           </form><br>";
 
-      echo $text_suppr;
+      // echo $text_suppr;
 
 echo  "</div>
 
@@ -142,3 +155,5 @@ echo  "</div>
 </body>
 
 </html>
+
+<!-- echo "<script type=\"text/javascript\"> confirm('do you really, really want to delete this file?'); </script>"; -->
