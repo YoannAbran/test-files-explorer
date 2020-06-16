@@ -1,5 +1,6 @@
 
 <?php
+global $item;
 echo "<!-- Modal -->
 <div class='modal fade' id='deletemodal' data-backdrop='static' tabindex='-1' role='dialog' aria-labelledby='staticBackdropLabel' aria-hidden='true'>
   <div class='modal-dialog' role='document'>
@@ -14,11 +15,10 @@ echo "<!-- Modal -->
         Etes vous sur de vouloir supprimer ce fichier ?
       </div>
       <div class='modal-footer'>
-        <form class='' for='' action='' method='post'>
         <button type='button' class='btn btn-secondary' data-dismiss='modal'>Non</button>
-                  <form id='formdelete' for='delete_form' action='' method='post'>
-                  <input type='hidden'  name='delete_form'>
-        <button type='submit' class='btn btn-primary'>Oui</button>
+                  <form action='suppr.php' id='formdelete' method='post'>
+                  <input type='hidden' value='$item'  name='delete'>
+        <button type='submit' name='delete' class='btn btn-primary'>Oui</button>
       </form>
       </div>
     </div>
