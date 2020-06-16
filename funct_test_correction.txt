@@ -1,1 +1,25 @@
+$home ="home";
+if(!is_dir($home)){
+mkdir("home");
+}
+chdir(getcwd().DIRECTORY_SEPARATOR.$home);
 
+
+if (!empty($_GET['dir'])){
+// transforme l'url en tableau en prenant le / comme élément qui sépare les élément
+$crumbs=explode(DIRECTORY_SEPARATOR,$_GET['dir']);
+}
+
+// pour garder la trce de l'endroit ou l'on est dans le fil d'arianne
+$url_pre='';
+
+//on récupère chaque élément dans une variable $crumb du tableau $crumbs,on récupère les élément pour créer le fil d'arianne
+if (!empty($_GET['dir'])){
+
+foreach($crumbs as $crumb){
+    $url_pre .= $crumb;
+    echo "<li class=''><a class='text-light h5' href='?dir=".$url_pre."'>&nbsp/&nbsp$crumb&nbsp</a></li>";
+    $url_pre .= DIRECTORY_SEPARATOR;
+  }
+}
+?>
