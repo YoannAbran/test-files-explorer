@@ -6,17 +6,17 @@ $dirroad = $_GET['dir'];
 else {
   $dirroad = getcwd();
 }
+
+if(isset($_POST['delete'])){
+
 $del_name = $_POST['delete'];
 $del_road = $dirroad . DIRECTORY_SEPARATOR . $del_name;
 
-if (!file_exists($del_road)){
-  echo"le fichier n'existe pas";
+if (is_dir($del_road)){
+
+  rmdir($del_road);
 }
 else {
-  if (is_dir($del_road)){
-    rmdir($del_road);
-  }
-  else {
     unlink($del_road);
   }
 }

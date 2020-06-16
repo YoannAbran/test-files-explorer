@@ -68,8 +68,9 @@ echo"<div class='container'>
 
 //récupère les éléments du tableau $list qui utilise la fonction ScanDirectory
   foreach ($list as $item) {
+    global $item;
     if (file_exists($item)) {
-      global $item;
+
 //récupère la taille, le type,la date et le nom des éléments
      $size = "<span style='font-size:12px;'>".filesize($item)."</span>";
      $type = "<span style='font-size:12px;'>".mime_content_type($item)."</span>";
@@ -77,15 +78,13 @@ echo"<div class='container'>
      $baseitem =basename($item);
 
 //on vérifie si l'element est un dossier,si oui on les affiches en créant un lien pour accéder au contenu de ce dossier en sauvgardant le chemin dans $_GET
-// echo"<form id='copy' method='post'><input type='hidden' name='copy' value='$item'></form>
-// <form id='cut' method='post'><input type='hidden' name='cut' value='$item'></form>
-// <form id='paste' method='post'><input type='hidden' name='paste' value='$item'></form>
-// <form id='delete' method='post'><input type='hidden' name='delete' value='$item'></form>";
+
+
 
      if (is_dir("$item")) {
 
         echo "
-        <form  method='post'>
+
         <tr>
         <td><i class=\"fas fa-folder text-primary \"></i> <a class='text-light' href=\"".$_SERVER['PHP_SELF']."?dir=".rawurlencode($item).
         "\">$baseitem</a></td>
@@ -93,7 +92,7 @@ echo"<div class='container'>
         <td>$type</td>
         <td>$date</td>
 
-
+<form action='suppr.php' method='post'>
         <td><button  name='copy' class='btn text-primary' type='button' data-toggle='modal' data-target='#copymodal'><input type='hidden' name='copy' value='$item'><i class='fas fa-copy'></i></button></td>
 
         <td><button  name='cut' class='btn text-danger' type='button' data-toggle='modal' data-target='#cutmodal'><input type='hidden' name='cut' value='$item'><i class='fas fa-cut'></i></button></td>
@@ -101,19 +100,20 @@ echo"<div class='container'>
         <td><button  name='paste' class='btn text-primary' type='button' data-toggle='modal' data-target='#pastemodal'><input type='hidden' name='paste' value='$item'><i class='fas fa-paste'></i></button></td>
 
 
-        <td><button  name='delete' class='btn text-danger' type='button' data-toggle='modal' data-target='#deletemodal' ><input type='hidden' name='delete' value='$item'><i class='fas fa-trash-alt'></i></button></td>
+        <td><button  name='delete' class='btn text-danger' onclick='confirm()' type='submit'  ><input type='hidden' name='delete' value='$item'><i class='fas fa-trash-alt'></i></button></td>
         </tr></form>
         ";
      }
 
 // sinon c'est un fichier on les affiches avec un lien pour afficher leur contenu si le type le permet
      else {
-        echo "<form  method='post'>
+        echo "
         <tr><td><i class='fas fa-file text-danger'></i> <a class='text-white ' href='".$item."'>$baseitem</a></td>
         <td>$size</td>
         <td>$type</td>
         <td>$date</td>
 
+<form method='post'>
         <td><button  name='copy' class='btn text-primary' type='button' data-toggle='modal' data-target='#copymodal'><input type='hidden' name='copy' value='$item'><i class='fas fa-copy'></i></button></td>
 
         <td><button  name='cut' class='btn text-danger' type='button' data-toggle='modal' data-target='#cutmodal'><input type='hidden' name='cut' value='$item'><i class='fas fa-cut'></i></button></td>
@@ -121,7 +121,7 @@ echo"<div class='container'>
         <td><button  name='paste' class='btn text-primary' type='button' data-toggle='modal' data-target='#pastemodal'><input type='hidden' name='paste' value='$item'><i class='fas fa-paste'></i></button></td>
 
 
-        <td><button  name='delete' class='btn text-danger' type='button' data-toggle='modal' data-target='#deletemodal' ><input type='hidden' name='delete' value='$item'><i class='fas fa-trash-alt'></i></button></td>
+        <td><button  name='delete' class='btn text-danger' onclick='confirm()' type='submit'  ><input type='hidden' name='delete' value='$item'><i class='fas fa-trash-alt'></i></button></td>
         </tr></form>
         ";
      }
@@ -172,18 +172,10 @@ echo  "</div>
 </section>";
 
 ?>
-<!-- <script>
-function myFunction() {
-  var txt;
-  var r = confirm("êtes vous sur ?!");
-  if (r == true) {
-    // txt = "You pressed OK!";
-  } else {
-    // txt = "You pressed Cancel!";
-  }
-  document.getElementById("demo").innerHTML = txt;
-}
-</script> -->
+
+<script type=\"text/javascript\"> confirm('do you really, really want to delete this file?'); </script>
+
+
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>

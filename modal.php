@@ -16,7 +16,7 @@ echo "<!-- Modal -->
       </div>
       <div class='modal-footer'>
         <button type='button' class='btn btn-secondary' data-dismiss='modal'>Non</button>
-                  <form action='suppr.php' id='formdelete' method='post'>
+                  <form action='' method='post'>
                   <input type='hidden' value='$item'  name='delete'>
         <button type='submit' name='delete' class='btn btn-primary'>Oui</button>
       </form>
